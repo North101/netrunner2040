@@ -1,80 +1,67 @@
-from collections import namedtuple
-
 import badger2040
-from badger_ui.base import Widget, WidgetMixin
+from badger_ui.base import App, Widget
+from badger_ui.positioned import Positioned
+from badger_ui.sized import SizedBox
+from badger_ui.row import Row
 from badger_ui.util import Image, Offset, Size
 
 from .unit import ClickUnitWidget, UnitWidget
 
 
 class TrackerScreen(Widget):
-  def __init__(self, parent: WidgetMixin, size: Size, offset: Offset = None):
-    super().__init__(parent, size, offset)
-
+  def __init__(self):
     self.selected_index = 0
-    self.units: list[UnitWidget] = []
+    self.values = [
+        4,
+        4,
+        5,
+    ]
 
-    click_image = Image('netrunner2040/assets/click.bin', 32, 32)
-    click_image.load()
-    self.units.append(ClickUnitWidget(
-      self,
-      Size(self.size.width // 3, self.size.height),
-      4,
-      click_image,
-      self.selected_index == 0,
-      offset=Offset(0, 0),
-    ))
+    self.images = [
+      Image('netrunner2040/assets/click.bin', 32, 32),
+      Image('netrunner2040/assets/mu.bin', 32, 32),
+      Image('netrunner2040/assets/credit.bin', 32, 32),
+    ]
+    for image in self.images:
+      image.load()
 
-    mu_image = Image('netrunner2040/assets/mu.bin', 32, 32)
-    mu_image.load()
-    self.units.append(UnitWidget(
-      self,
-      Size(self.size.width // 3, self.size.height),
-      4,
-      mu_image,
-      self.selected_index == 2,
-      offset=Offset(size.width // 3, 0),
-    ))
-
-    credit_image = Image('netrunner2040/assets/credit.bin', 32, 32)
-    credit_image.load()
-    self.units.append(UnitWidget(
-      self,
-      Size(self.size.width // 3, self.size.height),
-      5,
-      credit_image,
-      self.selected_index == 1,
-      offset=Offset(size.width // 3 * 2, 0),
-    ))
-
-  def on_button(self, pressed: dict[int, bool]):
+  def on_button(self, app: App, pressed: dict[int, bool]):
     if pressed[badger2040.BUTTON_A]:
-      self.set_selected(0)
+      self.selected_index = 0
       return True
 
     elif pressed[badger2040.BUTTON_B]:
-      self.set_selected(1)
+      self.selected_index = 1
       return True
 
     elif pressed[badger2040.BUTTON_C]:
-      self.set_selected(2)
+      self.selected_index = 2
       return True
 
     elif pressed[badger2040.BUTTON_UP]:
-      return self.units[self.selected_index].on_button(pressed)
+      self.values[self.selected_index] += 1
+      return True
 
     elif pressed[badger2040.BUTTON_DOWN]:
-      return self.units[self.selected_index].on_button(pressed)
+      if self.selected_index == 0:
+        self.values[self.selected_index] -= 1
+        if self.values[self.selected_index] < 0:
+          self.values[self.selected_index] = 4
+      else:
+        self.values[self.selected_index] = max(self.values[self.selected_index] - 1, 0)
+      return True
 
-    return super().on_button(pressed)
-  
-  def set_selected(self, select: int):
-    self.selected_index = select
-    for i, unit in enumerate(self.units):
-      unit.selected = (i == select)
+    return super().on_button(app, pressed)
 
-  def render(self):
-    super().render()
-
-    for unit in self.units:
-      unit.render()
+  def render(self, app: 'App', size: Size, offset: Offset):
+    Row(children=[
+        SizedBox(
+            child=UnitWidget(
+                value,
+                self.images[i],
+                self.selected_index == i,
+            ),
+            size=Size(size.width // 3, size.height),
+        )
+        for i, value in enumerate(self.values)
+    ]).render(app, size, offset)
