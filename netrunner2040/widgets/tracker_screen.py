@@ -1,8 +1,8 @@
 import badger2040
 from badger_ui.base import App, Widget
 from badger_ui.positioned import Positioned
-from badger_ui.sized import SizedBox
 from badger_ui.row import Row
+from badger_ui.sized import SizedBox
 from badger_ui.util import Image, Offset, Size
 
 from .unit import ClickUnitWidget, UnitWidget
@@ -18,9 +18,9 @@ class TrackerScreen(Widget):
     ]
 
     self.images = [
-      Image('netrunner2040/assets/click.bin', 32, 32),
-      Image('netrunner2040/assets/mu.bin', 32, 32),
-      Image('netrunner2040/assets/credit.bin', 32, 32),
+        Image('netrunner2040/assets/click.bin', 32, 32),
+        Image('netrunner2040/assets/mu.bin', 32, 32),
+        Image('netrunner2040/assets/credit.bin', 32, 32),
     ]
     for image in self.images:
       image.load()
@@ -53,7 +53,7 @@ class TrackerScreen(Widget):
 
     return super().on_button(app, pressed)
 
-  def render(self, app: 'App', size: Size, offset: Offset):
+  def __call__(self, app: 'App', size: Size, offset: Offset):
     Row(children=[
         SizedBox(
             child=UnitWidget(
@@ -64,4 +64,4 @@ class TrackerScreen(Widget):
             size=Size(size.width // 3, size.height),
         )
         for i, value in enumerate(self.values)
-    ]).render(app, size, offset)
+    ])(app, size, offset)
