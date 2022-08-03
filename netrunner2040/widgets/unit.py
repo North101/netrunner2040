@@ -21,7 +21,7 @@ class UnitWidget(Widget):
 
     return super().on_button(app, pressed)
 
-  def __call__(self, app: 'App', size: Size, offset: Offset):
+  def render(self, app: 'App', size: Size, offset: Offset):
     app.display.pen(0)
     app.display.thickness(2)
 

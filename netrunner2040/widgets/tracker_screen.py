@@ -1,6 +1,5 @@
 import badger2040
 from badger_ui.base import App, Widget
-from badger_ui.positioned import Positioned
 from badger_ui.row import Row
 from badger_ui.sized import SizedBox
 from badger_ui.util import Image, Offset, Size
@@ -53,7 +52,7 @@ class TrackerScreen(Widget):
 
     return super().on_button(app, pressed)
 
-  def __call__(self, app: 'App', size: Size, offset: Offset):
+  def render(self, app: 'App', size: Size, offset: Offset):
     Row(children=[
         SizedBox(
             child=UnitWidget(
@@ -64,4 +63,4 @@ class TrackerScreen(Widget):
             size=Size(size.width // 3, size.height),
         )
         for i, value in enumerate(self.values)
-    ])(app, size, offset)
+    ]).render(app, size, offset)
