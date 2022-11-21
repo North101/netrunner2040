@@ -1,0 +1,16 @@
+{
+    "version": "0.1",
+    "urls": [
+        ["netrunner2040/assets/click.bin", "github:North101/netrunner2040/netrunner2040/assets/click.bin"],
+        ["netrunner2040/assets/credit.bin", "github:North101/netrunner2040/netrunner2040/assets/credit.bin"],
+        ["netrunner2040/assets/mu.bin", "github:North101/netrunner2040/netrunner2040/assets/mu.bin"],
+        ["netrunner2040/widgets/__init__.py", "github:North101/netrunner2040/netrunner2040/widgets/__init__.py"],
+        ["netrunner2040/widgets/app.py", "github:North101/netrunner2040/netrunner2040/widgets/app.py"],
+        ["netrunner2040/widgets/tracker_screen.py", "github:North101/netrunner2040/netrunner2040/widgets/tracker_screen.py"],
+        ["netrunner2040/widgets/unit.py", "github:North101/netrunner2040/netrunner2040/widgets/unit.py"],
+        ["netrunner2040/__init__.py", "github:North101/netrunner2040/netrunner2040/__init__.py"]
+    ],
+    "deps": [
+        ["github:North101/badger_ui", "master"]
+    ]
+}
