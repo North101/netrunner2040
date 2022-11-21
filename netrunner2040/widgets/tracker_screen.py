@@ -4,6 +4,7 @@ from badger_ui.row import Row
 from badger_ui.sized import SizedBox
 from badger_ui.util import Image, Offset, Size
 
+from netrunner2040 import assets_dir
 from .unit import ClickUnitWidget, UnitWidget
 
 
@@ -17,9 +18,9 @@ class TrackerScreen(Widget):
     ]
 
     self.images = [
-        Image('netrunner2040/assets/click.bin', 32, 32),
-        Image('netrunner2040/assets/mu.bin', 32, 32),
-        Image('netrunner2040/assets/credit.bin', 32, 32),
+        Image(f'{assets_dir}/click.bin', 32, 32),
+        Image(f'{assets_dir}/mu.bin', 32, 32),
+        Image(f'{assets_dir}/credit.bin', 32, 32),
     ]
     for image in self.images:
       image.load()
