@@ -1,4 +1,4 @@
-import badger2040
+import badger2040w
 from badger_ui.base import App, Widget
 from badger_ui.row import Row
 from badger_ui.sized import SizedBox
@@ -26,23 +26,23 @@ class TrackerScreen(Widget):
       image.load()
 
   def on_button(self, app: App, pressed: dict[int, bool]):
-    if pressed[badger2040.BUTTON_A]:
+    if pressed[badger2040w.BUTTON_A]:
       self.selected_index = 0
       return True
 
-    elif pressed[badger2040.BUTTON_B]:
+    elif pressed[badger2040w.BUTTON_B]:
       self.selected_index = 1
       return True
 
-    elif pressed[badger2040.BUTTON_C]:
+    elif pressed[badger2040w.BUTTON_C]:
       self.selected_index = 2
       return True
 
-    elif pressed[badger2040.BUTTON_UP]:
+    elif pressed[badger2040w.BUTTON_UP]:
       self.values[self.selected_index] += 1
       return True
 
-    elif pressed[badger2040.BUTTON_DOWN]:
+    elif pressed[badger2040w.BUTTON_DOWN]:
       if self.selected_index == 0:
         self.values[self.selected_index] -= 1
         if self.values[self.selected_index] < 0:

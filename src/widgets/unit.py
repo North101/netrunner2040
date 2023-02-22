@@ -1,4 +1,4 @@
-import badger2040
+import badger2040w
 from badger_ui.base import App, Widget
 from badger_ui.util import Image, Offset, Size
 
@@ -11,19 +11,19 @@ class UnitWidget(Widget):
     self.text_scale = 1.5
 
   def on_button(self, app: App, pressed: dict[int, bool]) -> bool:
-    if pressed[badger2040.BUTTON_UP]:
+    if pressed[badger2040w.BUTTON_UP]:
       self.value += 1
       return True
 
-    elif pressed[badger2040.BUTTON_DOWN]:
+    elif pressed[badger2040w.BUTTON_DOWN]:
       self.value = max(self.value - 1, 0)
       return True
 
     return super().on_button(app, pressed)
 
   def render(self, app: 'App', size: Size, offset: Offset):
-    app.display.pen(0)
-    app.display.thickness(2)
+    app.display.set_pen(0)
+    app.display.set_thickness(2)
 
     value_text = f'{self.value}'
     height = size.height
@@ -57,11 +57,11 @@ class UnitWidget(Widget):
 
 class ClickUnitWidget(UnitWidget):
   def on_button(self, app: App, pressed: dict[int, bool]) -> bool:
-    if pressed[badger2040.BUTTON_UP]:
+    if pressed[badger2040w.BUTTON_UP]:
       self.value += 1
       return True
 
-    elif pressed[badger2040.BUTTON_DOWN]:
+    elif pressed[badger2040w.BUTTON_DOWN]:
       self.value -= 1
       if self.value < 0:
         self.value = 4
