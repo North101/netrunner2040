@@ -1,30 +1,31 @@
 {
+  "name": "netrunner2040",
   "version": "0.1",
   "repository": "github:North101/netrunner2040",
   "urls": [
     [
       "netrunner2040/__init__.py",
-      "github:North101/netrunner2040/src/__init__.py"
+      "github:North101/netrunner2040/netrunner2040/__init__.py"
     ],
     [
       "netrunner2040/__main__.py",
-      "github:North101/netrunner2040/src/__main__.py"
+      "github:North101/netrunner2040/netrunner2040/__main__.py"
     ],
     [
       "netrunner2040/widgets/tracker_screen.py",
-      "github:North101/netrunner2040/src/widgets/tracker_screen.py"
+      "github:North101/netrunner2040/netrunner2040/widgets/tracker_screen.py"
     ],
     [
       "netrunner2040/widgets/__init__.py",
-      "github:North101/netrunner2040/src/widgets/__init__.py"
+      "github:North101/netrunner2040/netrunner2040/widgets/__init__.py"
     ],
     [
       "netrunner2040/widgets/unit.py",
-      "github:North101/netrunner2040/src/widgets/unit.py"
+      "github:North101/netrunner2040/netrunner2040/widgets/unit.py"
     ],
     [
       "netrunner2040/widgets/app.py",
-      "github:North101/netrunner2040/src/widgets/app.py"
+      "github:North101/netrunner2040/netrunner2040/widgets/app.py"
     ]
   ],
   "deps": [
